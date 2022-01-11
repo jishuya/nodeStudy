@@ -6,13 +6,11 @@ app.get('/', (req, res) => {
     res.send('<h1>start page.... </h1>')
 }); 
 
-app.get('/api/members', (req, res) => {
-    res.send(members)
-}); 
 
 app.get('/api/members/:id', (req, res) => {
     const { id } = req.params;
-    const member = members.find((m) => { m.id === Number(id)});
+    const member = members.find((m) => { return m.id === Number(id)});
+
     if(member) {
         res.send(member)
     } else {
@@ -22,11 +20,9 @@ app.get('/api/members/:id', (req, res) => {
 
 app.get('/api/members/', (req, res) => {
     const { team } = req.query;
-    console.log(111 ,team)
     if (team) {
-        const teamMembers = members.filter((m) => m.team === team);
-        
-        res.send(teamMembers);
+        const teamMember = members.filter((m) => { return m.team === team});
+        res.send(teamMember);
     } else {
         res.send(members)
     }
