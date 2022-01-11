@@ -1,0 +1,18 @@
+GET http://localhost:3000/api/members
+
+###
+
+POST http://localhost:3000/api/members
+Content-Type: application/json
+
+{
+    "id": 10,
+    "name": "heewon",
+    "team": "Account",
+    "position": "accountant",
+    "emailAddress": "charles@google.com",
+    "phoneNumber": "010-xxx-xxxx",
+    "admissionDate": "2021/01/11",
+    "birthday": "1991/04/15",
+    "profileImage": "profile10.png"
+}

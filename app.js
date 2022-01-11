@@ -1,11 +1,19 @@
 const express = require('express')
 const app = express();
 const members = require('./members');
+app.use(express.json());
+
 
 app.get('/', (req, res) => {
     res.send('<h1>start page.... </h1>')
 }); 
 
+
+app.post('/api/members', (req, res) => {
+    const newMember = req.body;
+    members.push(newMember)
+    res.send(newMember)
+});
 
 app.get('/api/members/:id', (req, res) => {
     const { id } = req.params;
