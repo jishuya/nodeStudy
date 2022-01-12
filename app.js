@@ -3,6 +3,11 @@ const app = express();
 const members = require('./members');
 app.use(express.json());
 
+app.use((req, res, next) => {
+    console.log("middleware test....")
+    console.log(req.query)
+    next();
+})
 
 app.get('/', (req, res) => {
     res.send('<h1>start page.... </h1>')
@@ -26,15 +31,15 @@ app.get('/api/members/:id', (req, res) => {
     }
 })
 
-app.get('/api/members/', (req, res) => {
-    const { team } = req.query;
-    if (team) {
-        const teamMember = members.filter((m) => { return m.team === team});
-        res.send(teamMember);
-    } else {
-        res.send(members)
-    }
-})
+// app.get('/api/members/', (req, res) => {
+//     const { team } = req.query;
+//     if (team) {
+//         const teamMember = members.filter((m) => { return m.team === team});
+//         res.send(teamMember);
+//     } else {
+//         res.send(members)
+//     }
+// })
 
 app.listen(3000, () =>{
     console.log('Server is listening')
