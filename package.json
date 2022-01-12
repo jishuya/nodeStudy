@@ -1,33 +1,9 @@
 {
-  "name": "jishu_node_study",
-  "version": "1.0.0",
-  "description": "learning node.js",
-  "main": "main.js",
-  "dependencies": {
-    "cowsay": "^1.5.0",
-    "express": "^4.17.2",
-    "fix": "0.0.6"
-  },
-  "devDependencies": {
-    "nodemon": "^2.0.15"
-  },
+  "name": "async-methods",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node app.js",
-    "dev" : "nodemon app.js"
+    "start": "node app.js"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/jishuya/nodeStudy.git"
-  },
-  "keywords": [
-    "learn",
-    "node.js"
-  ],
-  "author": "jishu",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/jishuya/nodeStudy/issues"
-  },
-  "homepage": "https://github.com/jishuya/nodeStudy#readme"
+  "dependencies": {
+    "express": "^4.17.1"
+  }
 }
