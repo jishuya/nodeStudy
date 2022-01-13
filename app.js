@@ -4,8 +4,6 @@ const members = require('./members');
 const app = express();
 
 app.use(express.json());
-// 여기에 두 번째 미들웨어를 설정해보세요.
-
 
 
 app.get('/api/members', (req, res) => {
@@ -33,6 +31,26 @@ app.post('/api/members', (req, res) => {
   members.push(newMember);
   res.send(newMember);
 });
+
+
+app.put('/api/members/:id', (req, res) =>{
+  const { id } = req.params;
+  const newInfo  = req.body;
+  const member = members.find((m) => m.id === Number(id))
+  if (member) {
+    console.log(newInfo)
+    console.log(typeof(newInfo))
+    console.log("before member: ", member)
+    Object.keys(newInfo).forEach((prop) => {
+      member[prop] = newInfo[prop]
+    })
+    res.send(member);
+    console.log("after member:", member)
+  } else {
+    res.status(404).send({ message: 'There is no memeber with the id' })
+  }
+})
+
 
 app.listen(3000, () => {
   console.log('Server is listening...');
