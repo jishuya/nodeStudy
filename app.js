@@ -1,5 +1,5 @@
 const express = require('express');
-const members = require('./members');
+let members = require('./members');
 
 const app = express();
 
@@ -38,16 +38,24 @@ app.put('/api/members/:id', (req, res) =>{
   const newInfo  = req.body;
   const member = members.find((m) => m.id === Number(id))
   if (member) {
-    console.log(newInfo)
-    console.log(typeof(newInfo))
-    console.log("before member: ", member)
+    console.log("before:", member)
     Object.keys(newInfo).forEach((prop) => {
       member[prop] = newInfo[prop]
     })
     res.send(member);
-    console.log("after member:", member)
   } else {
     res.status(404).send({ message: 'There is no memeber with the id' })
+  }
+})
+
+app.delete('/api/members/:id', (req, res)=>{
+  const { id } = req.params;
+  const membersCount = members.length;
+  members = members.filter((m)=> m.id !== Number(id))
+  if (members.length < membersCount) {
+    res.send({ message: 'deleted' })
+  } else {
+    res.status(404).send({ message: 'There is no member with the id' })
   }
 })
 
