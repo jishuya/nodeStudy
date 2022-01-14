@@ -33,31 +33,31 @@ app.post('/api/members', (req, res) => {
 });
 
 
-app.put('/api/members/:id', (req, res) =>{
-  const { id } = req.params;
-  const newInfo  = req.body;
-  const member = members.find((m) => m.id === Number(id))
-  if (member) {
-    console.log("before:", member)
-    Object.keys(newInfo).forEach((prop) => {
-      member[prop] = newInfo[prop]
-    })
-    res.send(member);
-  } else {
-    res.status(404).send({ message: 'There is no memeber with the id' })
-  }
-})
+// app.put('/api/members/:id', (req, res) =>{
+//   const { id } = req.params;
+//   const newInfo  = req.body;
+//   const member = members.find((m) => m.id === Number(id))
+//   if (member) {
+//     console.log("before:", member)
+//     Object.keys(newInfo).forEach((prop) => {
+//       member[prop] = newInfo[prop]
+//     })
+//     res.send(member);
+//   } else {
+//     res.status(404).send({ message: 'There is no memeber with the id' })
+//   }
+// })
 
-app.delete('/api/members/:id', (req, res)=>{
-  const { id } = req.params;
-  const membersCount = members.length;
-  members = members.filter((m)=> m.id !== Number(id))
-  if (members.length < membersCount) {
-    res.send({ message: 'deleted' })
-  } else {
-    res.status(404).send({ message: 'There is no member with the id' })
-  }
-})
+// app.delete('/api/members/:id', (req, res)=>{
+//   const { id } = req.params;
+//   const membersCount = members.length;
+//   members = members.filter((m)=> m.id !== Number(id))
+//   if (members.length < membersCount) {
+//     res.send({ message: 'deleted' })
+//   } else {
+//     res.status(404).send({ message: 'There is no member with the id' })
+//   }
+// })
 
 
 app.listen(3000, () => {
