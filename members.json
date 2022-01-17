@@ -31,5 +31,17 @@
     "admissionDate": "2018/12/10",
     "birthday": "1994/11/08",
     "profileImage": "profile3.png"
+  },
+  {
+    "id": 4,
+    "name": "Kevin",
+    "team": "sales",
+    "position": "Sales Staff",
+    "emailAddress": "kevin@google.com",
+    "phoneNumber": "010-xxxx-xxxx",
+    "admissionDate": "2020/06/19",
+    "birthday": "1989/06/10",
+    "profileImage": "profile4.png"
   }
+  
 ]

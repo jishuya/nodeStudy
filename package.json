@@ -1,7 +1,9 @@
 {
   "name": "async-methods",
   "scripts": {
-    "start": "node app.js"
+    "start": "node app.js",
+    "dev" : "nodemon app.js"
+
   },
   "dependencies": {
     "express": "^4.17.1",

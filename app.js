@@ -1,66 +1,37 @@
 const express = require('express');
+const db = require('./models');
+
+const { Member } = db;
 
 const app = express();
 
-const db = require('./models')
-const { member } = db
-
-
 app.use(express.json());
 
-
-app.get('/api/members', (req, res) => {
+app.get('/api/members', async (req, res) => {
   const { team } = req.query;
   if (team) {
-    const teamMembers = members.filter((m) => m.team === team);
+    const teamMembers = await Member.findAll( {
+      where : {team},
+      order: [['admissionDate', 'DESC']] 
+    }); 
     res.send(teamMembers);
   } else {
+    const members = await Member.findAll({
+      where : {team}
+    });
     res.send(members);
   }
 });
 
-app.get('/api/members/:id', (req, res) => {
-  const { id } = req.params;
-  const member = members.find((m) => m.id === Number(id));
-  if (member) {
-    res.send(member);
+app.get('/api/members/:id', async(req, res) => {
+  const { id } = req.params
+  const member = await Member.findOne({ id })
+  if(member) {
+    res.send(member)
   } else {
-    res.status(404).send({ message: 'There is no such member' });
-  }
-});
-
-app.post('/api/members', (req, res) => {
-  const newMember = req.body;
-  members.push(newMember);
-  res.send(newMember);
-});
-
-
-app.put('/api/members/:id', (req, res) =>{
-  const { id } = req.params;
-  const newInfo  = req.body;
-  const member = members.find((m) => m.id === Number(id))
-  if (member) {
-    console.log("before:", member)
-    Object.keys(newInfo).forEach((prop) => {
-      member[prop] = newInfo[prop]
-    })
-    res.send(member);
-  } else {
-    res.status(404).send({ message: 'There is no memeber with the id' })
+    res.status(404).send({ message : 'Thre is no member with this id'})
   }
 })
-
-app.delete('/api/members/:id', (req, res)=>{
-  const { id } = req.params;
-  const membersCount = members.length;
-  members = members.filter((m)=> m.id !== Number(id))
-  if (members.length < membersCount) {
-    res.send({ message: 'deleted' })
-  } else {
-    res.status(404).send({ message: 'There is no member with the id' })
-  }
-// })
 
 
 app.listen(3000, () => {
