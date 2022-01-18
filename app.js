@@ -7,6 +7,9 @@ const app = express();
 
 app.use(express.json());
 
+
+
+
 app.get('/api/members', async (req, res) => {
   const { team } = req.query;
   if (team) {
@@ -16,9 +19,7 @@ app.get('/api/members', async (req, res) => {
     }); 
     res.send(teamMembers);
   } else {
-    const members = await Member.findAll({
-      where : {team}
-    });
+    const members = await Member.findAll();
     res.send(members);
   }
 });
@@ -32,6 +33,43 @@ app.get('/api/members/:id', async(req, res) => {
     res.status(404).send({ message : 'Thre is no member with this id'})
   }
 })
+
+
+app.post('/api/members/', async (req, res) => {
+  const newMember = req.body;
+  // const member = Member.build(newMember);
+  // await member.save();
+  const member = await Member.create(newMember)
+  res.send(member)
+})
+
+app.put('/api/members/:id', async (req, res)=>{
+  const { id } = req.params;
+  const newInfo = req.body;
+  const result = await Member.update(newInfo, { where : { id } });
+  if (result[0]) {
+    res.send({ message: `${result[0]} row(s) affected.` })
+  } else {
+    res.status(404).send({ message: `There is no member with this id.` });
+  }
+})
+
+
+// app.put('/api/members/:id', async (req, res) => {
+//   const { id } = req.params;
+//   const newInfo = req.body;
+//   const member = await Member.findOne({ where: { id } });
+//   console.log({ newInfo });
+//   if (member) {
+//     Object.keys(newInfo).forEach((prop) => {
+//       member[prop] = newInfo[prop];
+//     });
+//     await member.save();
+//     res.send(member);
+//   } else {
+//     res.status(404).send({ message: 'There is no member with the id!' });
+//   }
+// });
 
 
 app.listen(3000, () => {
