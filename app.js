@@ -43,6 +43,7 @@ app.post('/api/members/', async (req, res) => {
   res.send(member)
 })
 
+
 app.put('/api/members/:id', async (req, res)=>{
   const { id } = req.params;
   const newInfo = req.body;
@@ -70,6 +71,30 @@ app.put('/api/members/:id', async (req, res)=>{
 //     res.status(404).send({ message: 'There is no member with the id!' });
 //   }
 // });
+
+// app.delete('/api/members/:id', (req, res)=>{
+//   const { id } = req.params;
+//   const deletedCount = Member.destroy({ where : { id }});
+//   if (deletedCount) {
+//     res.send({ message : `${deletedCount} row(s) deleted.`})
+//   } else {
+//     res.status(404).send({ message: `There is no member with this id`})
+//   }
+// })
+
+// 객체의 destroy 메소드 사용하기 
+app.delete('/api/members/:id', async (req, res)=>{
+  const { id } = req.params;
+  const member = await Member.findOne({ where : { id } })
+  if (member) {
+    const result = await member.destroy();
+    res.send({ message : '1 row(s) deleted' })
+  } else {
+    res.status(404).send( { message : `There is no member with this id.` })
+  }
+  
+})
+
 
 
 app.listen(3000, () => {
