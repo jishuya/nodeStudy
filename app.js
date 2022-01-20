@@ -97,6 +97,6 @@ app.delete('/api/members/:id', async (req, res)=>{
 
 
 
-app.listen(3000, () => {
+app.listen(porcess.env.PORT || 3000, () => {
   console.log('Server is listening...');
 });
