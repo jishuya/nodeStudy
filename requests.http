@@ -8,14 +8,14 @@ POST http://localhost:3000/api/members
 Content-Type: application/json
 
 {
-    "name": "Zoo",
-    "team": "engineering",
-    "position": "Andoid Developer",
+    "name": "Jiwon",
+    "team": "Computer Engineering",
+    "position": "Web Developer",
     "emailAddress": "alex@google.com",
     "phoneNumber": "010-xxxx-xxxx",
-    "admissionDate": "2018/11/10",
-    "birthday": "1994/10/08",
-    "profileImage": "profile11.png"
+    "admissionDate": "2022/01/20",
+    "birthday": "1984/02/01",
+    "profileImage": "profile12.png"
 }
 
 ###
