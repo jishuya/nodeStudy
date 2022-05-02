@@ -12,7 +12,7 @@
 // })
 
 
-// server.listen(3000);
+// server.listen(5000);
 
 const menu = ['Pizza', 'Pasta', 'Steak', 'Salad', 'Soup']
 const express = require('express');
@@ -27,8 +27,11 @@ app.get('/menu', (req, res)=>{
 })
 
 app.get('/menu/:food', (req, res)=>{
+    const { food } = req.params
+    console.log(food)
+    // console.log(req.params.food)
     const foodName = menu[req.params.food -1];
-    console.log(11111, foodName)
+    console.log(11111, foodName)  
     res.end(`<h1>${foodName}</h1>`)
 })
 
