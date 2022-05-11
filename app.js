@@ -36,6 +36,20 @@ app.post('/student', (req, res)=>{
   res.send(newStudent)
 })
 
+app.post('/studnet/:id', (req, res)=>{
+  const { id } = req.params;
+  const newInfo = req.body;
+  const student = students.find((m)=>{
+    m.id === Number(id)
+  })
+
+  if (studnet){
+    Object.keys(newInfor).forEach((prop)=>{
+      student[prop] = newInfo[prop]
+    })
+  }
+})
+
 app.get('/', (req, res)=>{
   res.send('<h1>This is main page</h1>')
 })
