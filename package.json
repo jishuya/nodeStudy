@@ -2,10 +2,9 @@
   "name": "async-methods",
   "scripts": {
     "start": "node app.js",
-    "dev" : "nodemon app.js",
+    "dev": "nodemon app.js",
     "migrate": "sequelize db:migrate",
-    "seed" : "sequelize db:seed:all"
-
+    "seed": "sequelize db:seed:all"
   },
   "dependencies": {
     "express": "^4.17.1",
